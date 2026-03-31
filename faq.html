@@ -7,11 +7,30 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Schrijf hier gewoon je CSS voor dit component */
-
-			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
-
-			/* Hint: Denk aan de states van het component; deze kan open en dicht zijn */
+			:root{
+				--color-primary:#46166B;
+			}
+			main{
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				font-weight: 300;
+			}
+			details{
+				border: solid var(--color-primary) 0.2rem;
+				background-color: #EBDFF5;
+				border-radius: 0.375em; 
+    			padding: 1rem;
+				margin-bottom: 1rem;
+			}
+			details summary{
+				font-weight: 600;
+			}
+			
+			details:hover{
+				cursor: pointer;
+				summary{
+					font-style: italic;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -54,11 +73,11 @@
 
 			<details>
 				<summary>Beheer / actie geschiednis</summary>
-				<ol>
+				<ul>
 					<li><time datetime="2026-03-30">30 maart 2026</time> — Schade gemeld</li>
 					<li><time datetime="2026-03-28">28 maart 2026</time> — Ingenomen</li>
 					<li><time datetime="2026-03-20">20 maart 2026</time> — Uitgeleend</li>
-				</ol>
+				</ul>
 			</details>
 		</main>
 
@@ -66,12 +85,12 @@
     
 
 
-		<!-- Hint: Dit stukje HTML geeft het misschien al weg :) 
+		<!-- Hint: Dit stukje HTML geeft het misschien al weg :) -->
 		<details open>
 			<summary>Demo video</summary>
 			<video src="assets/faq.mp4" width="765" height="769" controls muted autoplay loop>
 				<a href="assets/faq.mp4">assets/faq.mp4</a>
 			</video>
-		</details>-->
+		</details>
 	</body>
 </html>
