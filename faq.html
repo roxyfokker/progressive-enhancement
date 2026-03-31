@@ -9,6 +9,7 @@
 		<style>
 			:root{
 				--color-primary:#46166B;
+				--color-primary-light:#EBDFF5;
 			}
 			main{
 				font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -16,21 +17,24 @@
 			}
 			details{
 				border: solid var(--color-primary) 0.2rem;
-				background-color: #EBDFF5;
+				background-color: var(--color-primary-light);
 				border-radius: 0.375em; 
     			padding: 1rem;
 				margin-bottom: 1rem;
-			}
-			details summary{
-				font-weight: 600;
-			}
-			
-			details:hover{
-				cursor: pointer;
 				summary{
-					font-style: italic;
+					font-weight: 600;
+				}
+				&:hover{
+					cursor: pointer;
+					summary{
+						font-style: italic;
+					}
 				}
 			}
+			details[open]{
+				background-color: white;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -44,7 +48,7 @@
 			</details>
 
 			<details>
-				<summary>specificaties</summary>
+				<summary>Specificaties</summary>
 				<dl>
 					<dt>Merk:</dt>
 					<dd>Fender</dd>
