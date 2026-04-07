@@ -7,18 +7,62 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Schrijf hier gewoon je CSS voor dit component */
+			:root{
+				--color-primary:#46166B;
+				--color-primary-light:#EBDFF5;
+			}
+			/*basis*/
+			input{
+				display: inline-block;
+				width: 2rem;
+				height: 2rem;
+			}
 
-			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
-
-			/* Hint: Hoe ver ga je qua styling? Vraag jezelf dit altijd af */
+			/*progressive enhancemnt*/
+			@supports (transform: translateX(0)) and (transition: 0.3s ease) {
+				input{
+					display: none;
+				}
+				label{
+					width: 8rem;
+					height: 4rem;
+					background-color: var(--color-primary-light);
+					border: 0.3rem solid var(--color-primary-light);
+					outline: 0.3rem solid var(--color-primary);
+					border-radius: 99px;
+					position: relative;
+					display: flex;
+					align-items: center;
+					cursor: pointer;
+				}
+				label::before{
+					content: '';
+					width: 4rem;
+					height: 4rem;
+					background-color: var(--color-primary);
+					border-radius: 50%;
+					position: absolute;
+					left: 0.1rem;
+					transition: transform 0.3s ease;
+				}
+				input:checked + label::before{
+					transform: translateX(3.8rem);
+				} 
+			}
+			@media (prefers-reduced-motion: reduce) {
+				label::before {
+					transition: none;
+				}
+			}
+			
 		</style>
 	</head>
 	<body>
 		<h1>Switch control</h1>
 		
-		<!-- Hint: Safari heeft hiervoor iets bedacht, maar is dat al een standaard?
-		     Wat gebeurt er in browsers die dat nog niet ondersteunen? -->
+		<input type="checkbox" id="toggle">
+		<label for="toggle"></label>
+		
 
 		<details open>
 			<summary>Demo video</summary>
