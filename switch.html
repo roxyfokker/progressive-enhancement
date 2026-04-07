@@ -45,8 +45,16 @@
 					left: 0.1rem;
 					transition: transform 0.3s ease;
 				}
+				input:checked + label{
+					background-color: green;
+					border: 0.3rem solid green;
+				} 
 				input:checked + label::before{
 					transform: translateX(3.8rem);
+					content: "AAN";
+					align-items: center;
+					display: flex;          
+  					justify-content: center;
 				} 
 			}
 			@media (prefers-reduced-motion: reduce) {
