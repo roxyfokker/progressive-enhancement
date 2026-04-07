@@ -7,33 +7,95 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
+			/* basis */
 			:root{
 				--color-primary:#46166B;
 				--color-primary-light:#EBDFF5;
 			}
+
 			main{
 				font-family: Verdana, Geneva, Tahoma, sans-serif;
 				font-weight: 300;
 			}
+
 			details{
 				border: solid var(--color-primary) 0.2rem;
 				background-color: var(--color-primary-light);
 				border-radius: 0.375em; 
-    			padding: 1rem;
+    			padding: 0.8rem;
 				margin-bottom: 1rem;
-				summary{
-					font-weight: 600;
-				}
-				&:hover{
-					cursor: pointer;
-					summary{
-						font-style: italic;
-					}
-				}
 			}
+
+			details summary{
+				color: var(--color-primary);
+				font-weight: 600;
+				font-size: 1rem;
+			}
+
+			details:hover{
+				cursor: pointer;
+			}
+
+			details:hover summary{
+				font-style: italic;
+			}
+
 			details[open]{
 				background-color: white;
+				animation: moveDown 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+				transform-origin: top;
 			}
+
+			/* enhancements */
+
+			@supports (user-select: none) {
+				details summary {
+					user-select: none;
+				}
+			}
+
+			@keyframes moveDown{
+				0% {
+					opacity: 0;
+					transform: translateY(-10px) scaleY(0.95);
+				}
+				60% {
+					opacity: 1;
+					transform: translateY(2px) scaleY(1.02);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0) scaleY(1);
+				}
+			}
+
+			@supports selector(summary::marker) {
+				summary::marker {
+					color: var(--color-primary);
+					font-size: 1.8rem;
+				}
+			}
+
+			@supports (list-style: none) and (content: url("")) {
+				summary {
+					list-style: none;
+				}
+
+				summary::before {
+					content: url("assets/details.svg");
+					display: inline-block;
+					margin-right: 0.5rem;
+					transition: transform 0.3s ease;
+					transform: rotate(90deg);
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				details[open] { 
+					animation: none; 
+				}
+			}
+
 
 		</style>
 	</head>
