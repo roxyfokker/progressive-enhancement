@@ -35,6 +35,11 @@
 			e.preventDefault()
 			nav.classList.remove('open')
 		})
+		document.addEventListener('click', function(e) {
+  			if (!nav.contains(e.target) && !link.contains(e.target)) {
+    			nav.classList.remove('open')
+  			}
+		})
 	</script>
 </head>
 
