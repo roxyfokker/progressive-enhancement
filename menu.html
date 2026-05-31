@@ -9,6 +9,78 @@
 		rel="stylesheet" />
 	<link href="assets/styles.css" rel="stylesheet" />
 	<style>
+		/*Huisstijl en positie*/
+		html, body{
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		}
+		a[href="#navigatie"]{
+			text-decoration: none;
+			color: black;
+			border: solid 0.1rem black;
+			border-radius: 0.5rem;
+			padding: 0.5rem 1.3rem;
+			box-shadow: 0.2rem 0.2rem 0 0 black;
+			&:hover{
+				box-shadow: 0.3rem 0.3rem 0 0 black;
+			}
+			&:active{
+				box-shadow: 0 0 0 0 black;
+        		transform: translate(0.2rem, 0.2rem);
+			}
+			&:focus{
+				outline: none;
+    			box-shadow: 0.2rem 0.2rem 0 0 black, 0.1rem 0.1rem 0 0.4rem royalblue;
+			}
+		}
+		nav{
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100dvh;
+			width: fit-content;
+			background-color: black;
+			padding: 0;
+			padding-left: 0.5rem;
+			overflow: hidden;
+
+			& a[href="#"] {
+				display: block;
+				text-align: right;
+				font-weight: bolder;
+				font-size: 1.2rem;
+				padding-right: 1.5rem;
+				padding-top: 1.5rem;
+				padding-bottom: 0;
+				&:hover{
+					background-color: black;
+					color: white;
+				}
+			}
+			
+			ul{
+				list-style: none;
+				padding: 0;
+			}
+			a{
+				text-decoration: none;
+				color: white;
+				padding: 0.5rem;
+				display: block;
+
+				&:hover{
+					background-color: white;
+					color: black;
+				}
+			}
+		}
+
+		/*Laag 2: Tonen en verbergen met CSS*/
+		nav{
+			display: none;
+		}
+		nav:target{
+			display: block;
+		}
 	
 	</style>
 	<script type="module">
@@ -183,6 +255,7 @@
 	</main>
 
 	<nav id="navigatie">
+		<a href="#">✕</a>
 		<ul>
 			<li><a href="index.html">Home</a></li>
 			<li><a href="faq.html">Veelgestelde vragen</a></li>
@@ -194,7 +267,6 @@
 			<li><a href="tabs.html">Tabbladen</a></li>
 			<li><a href="file.html">File image upload met preview</a></li>
 		</ul>
-		<a href="#">✕ Sluiten</a>
 	</nav>
 
 	<details open>
