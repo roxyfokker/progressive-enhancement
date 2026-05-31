@@ -15,6 +15,7 @@
 		}
 		a[href="#navigatie"]{
 			text-decoration: none;
+			display: inline-block;
 			color: black;
 			border: solid 0.1rem black;
 			border-radius: 0.5rem;
@@ -33,7 +34,7 @@
 			}
 		}
 		nav{
-			position: absolute;
+			position: fixed;
 			left: 0;
 			top: 0;
 			height: 100dvh;
@@ -80,6 +81,29 @@
 		}
 		nav:target{
 			display: block;
+		}
+
+		/*Laag 3: Animaties op navigatie openen en sluiten */
+		@media (prefers-reduced-motion: no-preference) {
+			nav{
+				left: -100%;
+				top: 0;
+				transition: 0.3s ease-out;
+				&:target{
+					left: 0;
+					@starting-style {
+						left: -100%;
+					}
+				}
+			}
+			a[href="#"]{
+				transition: 0.3s ease;
+    			transform-origin: center;
+
+				&:hover {
+					font-size: 1.5rem;
+				}
+			}
 		}
 	
 	</style>
