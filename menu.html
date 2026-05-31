@@ -43,15 +43,14 @@
 			padding: 0;
 			padding-left: 0.5rem;
 			overflow: hidden;
-
+	
 			& a[href="#"] {
-				display: block;
-				text-align: right;
-				font-weight: bolder;
-				font-size: 1.2rem;
-				padding-right: 1.5rem;
-				padding-top: 1.5rem;
-				padding-bottom: 0;
+				display: inline-block;
+				width: fit-content;
+				font-size: 1.5rem;
+				position: absolute;
+				top: 0.5rem;
+				right: 1rem;
 				&:hover{
 					background-color: black;
 					color: white;
@@ -61,6 +60,7 @@
 			ul{
 				list-style: none;
 				padding: 0;
+				padding-top: 2.8rem;
 			}
 			a{
 				text-decoration: none;
@@ -79,7 +79,7 @@
 		nav{
 			display: none;
 		}
-		nav:target{
+		nav:target, nav.open {
 			display: block;
 		}
 
@@ -99,16 +99,85 @@
 			a[href="#"]{
 				transition: 0.3s ease;
     			transform-origin: center;
-
+				display: block;
+				
 				&:hover {
-					font-size: 1.5rem;
+					transform: rotate(-90deg);
 				}
 			}
 		}
+		/*Enhancement 2: URL veranderd niet*/
+		nav:target, nav.open {
+			display: block;
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			nav:target, nav.open {
+				left: 0;
+
+				@starting-style {
+					left: -100%;
+				}
+			}
+		}
+		
 	
 	</style>
 	<script type="module">
-	
+		/*Enhancement 2: URL veranderd niet */
+		const nav = document.getElementById('navigatie')
+		const link = document.querySelector('a[href="#navigatie"]');
+		const sluit = document.querySelector('a[href="#"]');
+
+		link.addEventListener("click", function (e) {
+			e.preventDefault();
+			nav.classList.add('open')
+			document.body.style.overflow = 'hidden'
+			/*Enhancement 2: Focus naar eerste a in ul*/
+			ul.querySelector('a').focus()
+		});
+
+		sluit.addEventListener("click", function (e) {
+			e.preventDefault();
+			nav.classList.remove("open");
+			document.body.style.overflow = ''
+			/*Enhancement 2: Focus terug op hamburger na sluiten*/
+			link.focus()
+		});
+		/*Enhancement 2: Sluit automatisch bij klik buiten de nav*/
+		document.addEventListener("click", function (e) {
+			if (!nav.contains(e.target) && !link.contains(e.target)) {
+				nav.classList.remove("open");
+				/*Enhancement 2: Focus terug op hamburger na sluiten*/
+				link.focus()
+			}
+		});
+		/*Enhancement 2: Escape toets sluit de nav*/
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape') {
+				nav.classList.remove('open')
+				document.body.style.overflow = ''
+				link.focus()
+			}
+		})
+
+		/*Enhancement 2: Focus trap*/
+		nav.addEventListener('keydown', function(e) {
+			if (e.key !== 'Tab') return
+
+			const focusable = [...nav.querySelectorAll('a')]
+			const first = focusable[0]
+			const last = focusable.at(-1)
+
+			if (e.shiftKey && document.activeElement === first) {
+				e.preventDefault()
+				last.focus()
+			} else if (!e.shiftKey && document.activeElement === last) {
+				e.preventDefault()
+				first.focus()
+			}
+		})
+
 	</script>
 </head>
 
@@ -291,6 +360,7 @@
 			<li><a href="tabs.html">Tabbladen</a></li>
 			<li><a href="file.html">File image upload met preview</a></li>
 		</ul>
+		
 	</nav>
 
 	<details open>
