@@ -9,174 +9,33 @@
 		rel="stylesheet" />
 	<link href="assets/styles.css" rel="stylesheet" />
 	<style>
-		/* basis */
-		.btnOpenMenu {
-			border: 2px solid black;
-			padding: 0.4rem;
-			border-radius: 1rem;
-			text-decoration: none;
-			color: black;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			transition: box-shadow 0.2s ease, background-color 0.2s ease;
-
-			&:hover {
-				box-shadow: none;
-				background-color: wheat;
-			}
-		}
-
-		nav {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100dvh;
-			width: fit-content;
-			max-width: 35vw;
-			background-color: black;
-			position: relative;
-
-			ul {
-				display: flex;
-				flex-direction: column;
-				margin: 0;
-				padding-top: 1rem;
-				padding-left: 0;
-			}
-
-			li {
-				list-style: none;
-			}
-
-			a {
-				text-decoration: none;
-				padding: 1rem;
-				display: block;
-				color: white;
-				font-size: 1.5rem;
-
-				&:hover {
-					background-color: white;
-					color: black;
-				}
-			}
-		}
-
-		/* basis */
-
-		nav {
-			display: none;
-		}
-
-		nav:target {
-			display: block;
-		}
-
-		nav.open {
-			display: block;
-		}
-
-		/* enhancement - @media - animatie */
-
-		nav:target,
-		nav.open {
-			display: block;
-		}
-
-		@supports selector(:popover-open) and (transition-behavior: allow-discrete) {
-			nav:popover-open {
-				transform: translateX(0);
-
-				@starting-style {
-					transform: translateX(-100%);
-				}
-			}
-
-			nav {
-				transform: translateX(-100%);
-				transition: transform 0.3s ease;
-			}
-		}
-
-		@supports selector(:popover-open) {
-			nav:popover-open {
-				display: block;
-				position: absolute;
-				top: 0;
-				left: 0;
-				margin: 0;
-				height: 100dvh;
-				width: fit-content;
-				max-width: 35vw;
-			}
-
-			nav::backdrop {
-				background: rgba(0, 0, 0, 0.5);
-			}
-		}
+	
 	</style>
 	<script type="module">
-		let nav = document.querySelector("nav");
-		let link = document.querySelector('a[href="#navigatie"]');
-		let sluit = document.querySelector('a[href="#"]');
-
-		if (HTMLElement.prototype.hasOwnProperty("popover")) {
-			nav.setAttribute("popover", "");
-
-			link.addEventListener("click", function (e) {
-				e.preventDefault();
-				nav.togglePopover();
-			});
-
-			sluit.addEventListener("click", function (e) {
-				e.preventDefault();
-				nav.hidePopover();
-			});
-			// scrollen blokeren als menu open
-			nav.addEventListener("toggle", function(e) {
-				document.body.style.overflow = e.newState === "open" ? "hidden" : "";
-			});
-		} else {
-			link.addEventListener("click", function (e) {
-				e.preventDefault();
-				nav.classList.toggle("open");
-			});
-
-			sluit.addEventListener("click", function (e) {
-				e.preventDefault();
-				nav.classList.remove("open");
-			});
-
-			// buiten menu klikken is ook sluiten
-			document.addEventListener("click", function (e) {
-				if (!nav.contains(e.target) && !link.contains(e.target)) {
-					nav.classList.remove("open");
-				}
-			});
-		}
+	
 	</script>
 </head>
 
 <body>
+	<h1>Mobiel menu</h1>
+
+	<a href="#navigatie">☰ Menu</a>
+
+	<nav id="navigatie">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="faq.html">Veelgestelde vragen</a></li>
+			<li><a href="switch.html">Switch control</a></li>
+			<li><a href="menu.html">Mobiel menu</a></li>
+			<li><a href="rating.html">Rating</a></li>
+			<li><a href="carrousel.html">Carrousel</a></li>
+			<li><a href="pickers.html">Favorieten picker</a></li>
+			<li><a href="tabs.html">Tabbladen</a></li>
+			<li><a href="file.html">File image upload met preview</a></li>
+		</ul>
+		<a href="#">✕ Sluiten</a>
+	</nav>
 	<main>
-		<h1>Mobiel menu</h1>
-
-		<a class="btnOpenMenu" href="#navigatie">☰ Menu</a>
-
-		<nav id="navigatie">
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="faq.html">Veelgestelde vragen</a></li>
-				<li><a href="switch.html">Switch control</a></li>
-				<li><a href="menu.html">Mobiel menu</a></li>
-				<li><a href="rating.html">Rating</a></li>
-				<li><a href="carrousel.html">Carrousel</a></li>
-				<li><a href="pickers.html">Favorieten picker</a></li>
-				<li><a href="tabs.html">Tabbladen</a></li>
-				<li><a href="file.html">File image upload met preview</a></li>
-			</ul>
-			<a href="#">✕ Sluiten</a>
-		</nav>
-
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris interdum
 			eget elit eu tincidunt. Donec gravida nulla at justo sollicitudin,
