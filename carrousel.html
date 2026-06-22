@@ -1,55 +1,115 @@
 <!doctype html>
 <html lang="nl">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
-		<title>Carrousel / Progressive Enhancement / FDND</title>
-		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-		<link href="assets/styles.css" rel="stylesheet">
-		<style>
-			/* Hint: welk layout model is handig om content naast elkaar te zetten? */
-		</style>
-		<script type="module">
-			/* Schrijf hier eventueel je client-side JavaScript */
-		</script>
-	</head>
-	<body>
-		<h1>Carrousel</h1>
 
-		<section class="carousel">
-			<ol class="carousel__viewport">
-				<li class="carousel__slide" id="slide_1">
-					Websites leren bouwen, én praktijkervaring opdoen?
-					<a href="#slide_2" hidden>Volgende</a>
-				</li>
-				<li class="carousel__slide" id="slide_1">
-					“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”
-					<a href="#slide_1" hidden>Vorige</a>
-      				<a href="#slide_3" hidden>Volgende</a>
-				</li>
-				<li class="carousel__slide" id="slide_1">
-					“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”
-					<a href="#slide_2" hidden>Vorige</a>
-      				<a href="#slide_4" hidden>Volgende</a>
-				</li>
-				<li class="carousel__slide" id="slide_1">
-					“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”
-					<a href="#slide_3" hidden>Vorige</a>
-      				<a href="#slide_5" hidden>Volgende</a>
-				</li>
-				<li class="carousel__slide" id="slide_1">
-					“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”
-					<a href="#slide_4" hidden>Vorige</a>
-      				<a href="#slide_6" hidden>Volgende</a>
-				</li>
-				<li class="carousel__slide" id="slide_1">
-					“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”
-					<a href="#slide_5" hidden>Vorige</a>
-				</li>
-			</ol>
-		</section>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Carrousel / Progressive Enhancement / FDND</title>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+		rel="stylesheet">
+	<link href="assets/styles.css" rel="stylesheet">
+	<style>
+		.carousel {
+			position: relative;
 
-		<!-- Content: 
+			.carousel__prev,
+			.carousel__next {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1;
+				background-color: #05053A;
+				color: #6FC7B7;
+				text-decoration: none;
+				padding: 0.5rem 1.8rem;
+				font-size: 1rem;
+				border-radius: 0.6rem;
+				font-weight: normal;
+			}
+
+			.carousel__prev {
+				left: 1rem;
+			}
+
+			.carousel__next {
+				right: 1rem;
+			}
+
+			.carousel__viewport {
+				display: flex;
+				list-style: none;
+				overflow-x: scroll;
+				overflow-y: hidden;
+				scroll-snap-type: x mandatory;
+				overscroll-behavior-x: contain;
+				font-weight: bolder;
+				font-family: 'Open Sans', sans-serif;
+				font-size: 2.5rem;
+				padding: 0;
+				margin: 0;
+				@media (prefers-reduced-motion: no-preference) {
+					scroll-behavior: smooth;
+				}
+
+				.carousel__slide {
+					scroll-snap-align: center;
+					width: 20rem;
+					padding: 2rem;
+					flex-shrink: 0;
+					width: 80%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					text-align: center;
+					text-wrap: balance;
+				}
+
+			}
+		}
+
+		.carousel__slide:nth-child(1) {background-color: #9A69F2;}
+		.carousel__slide:nth-child(2) {background-color: #FDFB7A;}
+		.carousel__slide:nth-child(3) {background-color: #5AE0B6;}
+		.carousel__slide:nth-child(4) {background-color: #9A69F2;}
+		.carousel__slide:nth-child(5) {background-color: #5AE0B6;}
+		.carousel__slide:nth-child(6) {background-color: #FDFB7A;}
+	</style>
+	<script type="module">
+		/* Schrijf hier eventueel je client-side JavaScript */
+	</script>
+</head>
+
+<body>
+	<h1>Carrousel</h1>
+
+	<section class="carousel">
+		<button class="carousel__prev" id="prev-btn" hidden>Vorige</button>
+		<ol class="carousel__viewport">
+			<li class="carousel__slide" id="slide_1">
+				"Websites leren bouwen, én praktijkervaring opdoen?"
+			</li>
+			<li class="carousel__slide" id="slide_2">
+				"FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou
+				klaar voor het werkveld"
+			</li>
+			<li class="carousel__slide" id="slide_3">
+				"Je werkt bij ons aan échte projecten voor échte opdrachtgevers"
+			</li>
+			<li class="carousel__slide" id="slide_4">
+				"In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan
+				praktijkgerichte opdrachten"
+			</li>
+			<li class="carousel__slide" id="slide_5">
+				"Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen"
+			</li>
+			<li class="carousel__slide" id="slide_6">
+				"Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5"
+			</li>
+		</ol>
+		<button class="carousel__next" id="next-btn" hidden>Volgende</button>
+	</section>
+
+	<!-- Content: 
 		
 		“Websites leren bouwen, én praktijkervaring opdoen?”
 		
@@ -65,11 +125,12 @@
 
 		-->
 
-		<details open>
-			<summary>Demo video</summary>
-			<video src="assets/carrousel.mp4" width="1298" height="469" controls muted loop>
-				<a href="assets/carrousel.mp4">assets/carrousel.mp4</a>
-			</video>
-		</details>
-	</body>
+	<details open>
+		<summary>Demo video</summary>
+		<video src="assets/carrousel.mp4" width="1298" height="469" controls muted loop>
+			<a href="assets/carrousel.mp4">assets/carrousel.mp4</a>
+		</video>
+	</details>
+</body>
+
 </html>
