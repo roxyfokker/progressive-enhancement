@@ -5,27 +5,56 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Carrousel / Progressive Enhancement / FDND</title>
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"rel="stylesheet">
 	<link href="assets/styles.css" rel="stylesheet">
 	<style>
 		.carousel {
 			position: relative;
 
+			.carousel__viewport {
+				display: flex;
+				list-style: none;
+				overflow-x: scroll;
+				overflow-y: hidden;
+				overscroll-behavior-x: contain;
+				scroll-snap-type: x mandatory;
+				font-family: 'Open Sans', sans-serif;
+				font-size: 2.5rem;
+				font-weight: bolder;
+				padding: 0;
+				margin: 0;
+
+				@media (prefers-reduced-motion: no-preference) {
+				scroll-behavior: smooth;
+				}
+
+				.carousel__slide {
+					flex-shrink: 0;
+					width: 80%;
+					padding: 2rem;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					text-align: center;
+					text-wrap: balance;
+					scroll-snap-align: center;
+				}
+			}
+
 			.carousel__prev,
 			.carousel__next {
 				position: absolute;
 				top: 90%;
-				transform: translateY(-50%);
 				z-index: 1;
+				transform: translateY(-50%);
+				padding: 0.5rem 1.8rem;
+				border: none;
+				border-radius: 0.6rem;
 				background-color: #05053A;
 				color: #6FC7B7;
-				text-decoration: none;
-				padding: 0.5rem 1.8rem;
 				font-size: 1rem;
-				border-radius: 0.6rem;
 				font-weight: normal;
-				border: none;
+				text-decoration: none;
 				cursor: pointer;
 			}
 
@@ -35,37 +64,6 @@
 
 			.carousel__next {
 				right: 1rem;
-			}
-
-			.carousel__viewport {
-				display: flex;
-				list-style: none;
-				overflow-x: scroll;
-				overflow-y: hidden;
-				scroll-snap-type: x mandatory;
-				overscroll-behavior-x: contain;
-				font-weight: bolder;
-				font-family: 'Open Sans', sans-serif;
-				font-size: 2.5rem;
-				padding: 0;
-				margin: 0;
-				@media (prefers-reduced-motion: no-preference) {
-					scroll-behavior: smooth;
-				}
-
-				.carousel__slide {
-					scroll-snap-align: center;
-					width: 20rem;
-					padding: 2rem;
-					flex-shrink: 0;
-					width: 80%;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					text-align: center;
-					text-wrap: balance;
-				}
-
 			}
 		}
 
