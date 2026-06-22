@@ -83,17 +83,17 @@
 		const prevBtn = document.querySelector('.carousel__prev')
 		const nextBtn = document.querySelector('.carousel__next')
 		
-		const slideWidth = slides[0].getBoundingClientRect().width
+		const slideWidth = slides[0].getBoundingClientRect().width //https://raghavvelan.medium.com/a-scrollable-carousel-with-buttons-40b8de20669c We measure one card and call it a day.
 
 		prevBtn.hidden = false
 		nextBtn.hidden = false
 
 		prevBtn.addEventListener('click', function() {
-			viewport.scrollBy({ left: -slideWidth, behavior: 'smooth' })
+			viewport.scrollBy({ left: -slideWidth })
 		})
 
 		nextBtn.addEventListener('click', function() {
-			viewport.scrollBy({ left: slideWidth, behavior: 'smooth' })
+			viewport.scrollBy({ left: slideWidth })
 		})
 	</script>
 </head>
