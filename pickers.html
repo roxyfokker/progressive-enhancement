@@ -7,12 +7,42 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Schrijf hier gewoon je CSS voor dit component */
+			form{
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				width: 100dvw;
+				height: 20rem;
+			}
+			
+			input[type="color"] {
+				position: absolute;
+				inset: 0;
+				z-index: 0;
+				width: 100%;
+				height: 100%;
+				border: none;
+				cursor: pointer;
+			}
 
-			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
-
-			/* Hint: Kijk eens naar field-sizing
-			   https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing */
+			input[type="text"] {
+				position: relative;
+				z-index: 9999;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				min-width: 3ch;
+				width: 20ch;
+				height: 2rem;
+				border: none;
+				border-radius: 0.5rem;
+				font-size: 1.5rem;
+				font-weight: bold;
+				padding: 0.5rem;
+				text-align: center;
+			}
 		</style>
 	</head>
 
@@ -20,9 +50,8 @@
 		<h1>Favorieten picker</h1>
 
 		<form>
-
 			<label>
-				<input type="text" list="docenten-lijst">
+				<input type="text" list="docenten-lijst" value="Koop Reynders">
 				<datalist id="docenten-lijst">
 					<option value="Charley Muhren"></option>
 					<option value="Cyd Stumpel"></option>
@@ -45,6 +74,7 @@
 					<option value="#FFFC86"></option>
 				</datalist>
 			</label>
+		</form>
 
 			<!-- Een lijstje met docenten
 			Charley Muhren
@@ -65,8 +95,6 @@
 			#66E5BF
 			#FFFC86
 			-->
-
-		</form>
 
 		<details open>
 			<summary>Demo video</summary>
