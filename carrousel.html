@@ -15,7 +15,7 @@
 			.carousel__prev,
 			.carousel__next {
 				position: absolute;
-				top: 50%;
+				top: 90%;
 				transform: translateY(-50%);
 				z-index: 1;
 				background-color: #05053A;
@@ -25,6 +25,8 @@
 				font-size: 1rem;
 				border-radius: 0.6rem;
 				font-weight: normal;
+				border: none;
+				cursor: pointer;
 			}
 
 			.carousel__prev {
@@ -75,7 +77,24 @@
 		.carousel__slide:nth-child(6) {background-color: #FDFB7A;}
 	</style>
 	<script type="module">
-		/* Schrijf hier eventueel je client-side JavaScript */
+
+		const slides = document.querySelectorAll('.carousel__slide')
+		const viewport = document.querySelector('.carousel__viewport')
+		const prevBtn = document.querySelector('.carousel__prev')
+		const nextBtn = document.querySelector('.carousel__next')
+		
+		const slideWidth = slides[0].getBoundingClientRect().width
+
+		prevBtn.hidden = false
+		nextBtn.hidden = false
+
+		prevBtn.addEventListener('click', function() {
+			viewport.scrollBy({ left: -slideWidth, behavior: 'smooth' })
+		})
+
+		nextBtn.addEventListener('click', function() {
+			viewport.scrollBy({ left: slideWidth, behavior: 'smooth' })
+		})
 	</script>
 </head>
 
