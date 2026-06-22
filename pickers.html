@@ -42,6 +42,11 @@
 				font-weight: bold;
 				padding: 0.5rem;
 				text-align: center;
+
+				@supports (field-sizing: content) {
+					field-sizing: content;
+					width: auto;
+				}
 			}
 		</style>
 	</head>
