@@ -58,6 +58,10 @@
 				const url = URL.createObjectURL(fileInput.files[0])
   				preview.src = url
 			})
+
+			document.querySelector('form').addEventListener('reset', function() {
+				preview.src = ''
+			})
 		</script>
 	</head>
 	<body>
