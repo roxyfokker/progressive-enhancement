@@ -7,10 +7,64 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Schrijf hier gewoon je CSS voor dit component */
+			.tabs {
+				display: grid;
+				grid-template-rows: auto 1fr;
 
-			/* Hint: kijk eens naar de :target selector
-			   https://developer.mozilla.org/en-US/docs/Web/CSS/:target */
+				.tabs-nav {
+					grid-row: 1;
+
+					ul {
+						display: flex;
+						flex-direction: row;
+						padding-left: 0;
+						margin-bottom: 0;
+						list-style: none;
+						li {
+							list-style: none;
+							a {
+								display: block;
+								padding: 0.5rem 1rem;
+								text-decoration: none;
+								color: black;
+								background-color: white;
+								border: 2px solid transparent;
+								margin-bottom: -2px;
+
+								&:hover {
+									text-decoration: underline;
+								}
+							}
+						}
+					}
+				}
+
+				.tab-panel {
+					grid-row: 2;
+					display: none;
+
+					&:target {
+						display: block;
+						border: 2px solid black;
+						border-radius:  0 .5rem .5rem .5rem;
+					}
+				}
+
+				&:has(#Docenten:target) a[href="#Docenten"],
+				&:has(#Sprints:target) a[href="#Sprints"],
+				&:has(#Gedragscriteria:target) a[href="#Gedragscriteria"],
+				&:has(#Open-avond:target) a[href="#Open-avond"] {
+					position: relative;
+					top: 2px;
+
+					border: 2px solid black;
+					border-bottom: none;
+					border-radius: .5rem .5rem 0 0;
+
+					background: white;
+					z-index: 1;
+				}
+			}
 		</style>
 		<script type="module">
 			/* Schrijf hier eventueel je client-side JavaScript */
@@ -20,7 +74,7 @@
 		<h1>Tabbladen</h1>
 
 		<section class="tabs">
-			<nav>
+			<nav class="tabs-nav">
 				<ul>
 					<li><a href="#Docenten">Docenten</a></li>
 					<li><a href="#Sprints">Sprints</a></li>
@@ -28,7 +82,7 @@
 					<li><a href="#Open-avond">Open avond</a></li>
 				</ul>
 			</nav>
-			<div id="Docenten">
+			<div class="tab-panel" id="Docenten">
 				<ol>
 					<li>Charley Muhren</li>
 					<li>Cyd Stumpel</li>
@@ -43,7 +97,7 @@
 				</ol>
 			</div>
 
-			<div id="Sprints">
+			<div class="tab-panel" id="Sprints">
 				<ol>
 					<li>Your Tribe</li>
 					<li>The Client</li>
@@ -68,7 +122,7 @@
 				</ol>
 			</div>
 
-			<div id="Gedragscriteria">
+			<div class="tab-panel" id="Gedragscriteria">
 				<ol>
 					<li>Methodisch handelen
 						<ol>
@@ -108,7 +162,7 @@
 				</ol>
 			</div>
 
-			<div id="Open-avond">
+			<div class="tab-panel" id="Open-avond">
 				<p>Open avond 15 april 2025</p>
 				<p>Op de open dag proef je de sfeer en ontdek je hoe het is om aan de HvA te studeren. Je maakt kennis met studenten en docenten van de opleiding.</p>
 				<p>Stel je vragen over studiekeuze, studeren met een functiebeperking en toelating op het studiekeuzeplein. Heb je nog vragen over de opleiding? We staan tijdens de open dag/avond klaar om al jouw vragen te beantwoorden.</p>
