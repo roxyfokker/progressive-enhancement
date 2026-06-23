@@ -47,9 +47,6 @@
 						display: block;
 						border: 2px solid black;
 						border-radius:  0 .5rem .5rem .5rem;
-						@starting-style {
-							opacity: 0;
-						}
 					}
 				}
 
@@ -72,7 +69,9 @@
 				.tab-panel:target {
 					opacity: 1;
 					transition: opacity 0.3s;
-
+					@starting-style {
+						opacity: 0;
+					}
 				}
 			}
 		</style>
