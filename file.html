@@ -7,22 +7,57 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Schrijf hier gewoon je CSS voor dit component */
+			.upload-wrapper{
+				position: relative;
+				border-radius: 0.5rem;
+				label{
+					position: relative;
+					background-color: #5DE0B7;
+					border: solid 0.15rem #05043B;
+					border-radius: 0.5rem;
+					text-align: center;
+					padding: 5rem 3rem;
+					display: block;
+					cursor: pointer;
+					input[type="file"]{
+						position: absolute;
+						width: 1px;
+						height: 1px;
+						opacity: 0;
+						overflow: hidden;
+					}
+				}
+				output{
+					position: absolute;
+					inset: 0;
+					pointer-events: none;
+					img{
+						border-radius: 0.5rem;
+						width: 100%;
+  						height: 100%;
+						object-fit: cover;
+						display: none;
+						&[src]:not([src=""]){
+							display: block;
+						}
+					}
 
-			/* Hint: Denk niet te ingewikkeld */
+				}
+			}
+			button{
+				margin-top: 0.5rem;
+			}
 		</style>
 		<script type="module">
-			/* Schrijf hier eventueel je client-side JavaScript */
-			
-			/* Hint: Met een paar regels kom je al een heel eind */
 
-			/* Hint: Denk aan Sprint 5, micro-interacties en het driestappenplan:
-			   1) Zoek het element
-			   2) Voeg een event listener toe (https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event misschien?)
-			   3) Doe iets (https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications misschien?) */
+			const fileInput = document.querySelector('input[type="file"]')
+			const preview = document.querySelector('output img')
+			const wrapper = document.querySelector('.upload-wrapper')
 
-			/* Hint: Via JS kun je Custom Properties in CSS aanpassen
-			   https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/setProperty */
+			fileInput.addEventListener('change', function() {
+				const url = URL.createObjectURL(fileInput.files[0])
+  				preview.src = url
+			})
 		</script>
 	</head>
 	<body>
@@ -31,14 +66,18 @@
 		<!-- Voor het uploaden van een bestand heb je altijd een formulier nodig.
 		     Dus die krijg je alvast. Maak je over de server niet druk; het gaat om de UI. -->
 		<form method="post">
-			<label>
-				Selecteer je afbeelding
-				<input type="file" accept="image/*" class="file-uploader"> 
-			</label>
-			
+			<div class="upload-wrapper">
+				<label>
+					Selecteer je afbeelding
+					<input type="file" accept="image/*" class="file-uploader" onchange="upload"> 
+				</label>
 
+				<output>
+					<img src="" alt="">
+				</output>
+			</div>
+			<button type="reset" class="fdnd-button">Verwijderen</button>
 			<button type="submit" class="fdnd-button">Uploaden</button>
-
 		</form>
 
 		<details open>
